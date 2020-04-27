@@ -1,0 +1,25 @@
+﻿D:\MVS2019\MVS2017Prog\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141_xp\Toolset.targets(39,5): warning MSB8051: поддержка Windows XP прекращена, ее не будет в последующих выпусках Visual Studio. Дополнительные сведения: https://go.microsoft.com/fwlink/?linkid=2023588.
+  EndScene.cpp
+  HelloWorldScene.cpp
+  LoseScene.cpp
+  MyGameScene.cpp
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл HelloWorldScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл HelloWorldScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл MyGameScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл MyGameScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл EndScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл EndScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\mygamescene.cpp(331): warning C4996: 'cocos2d::Layer::setKeyboardEnabled': объявлен deprecate
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\2d\cclayer.h(208): note:  см. объявление "cocos2d::Layer::setKeyboardEnabled"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\helloworldscene.cpp(69): warning C4305: аргумент: усечение из "double" в "float"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\helloworldscene.cpp(75): warning C4305: аргумент: усечение из "double" в "float"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл LoseScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл LoseScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\endscene.cpp(43): warning C4305: аргумент: усечение из "double" в "float"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\proj.win32\losescene.cpp(43): warning C4305: аргумент: усечение из "double" в "float"
+D:\MVS2019\MVS2017Prog\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141_xp\Toolset.targets(39,5): warning MSB8051: поддержка Windows XP прекращена, ее не будет в последующих выпусках Visual Studio. Дополнительные сведения: https://go.microsoft.com/fwlink/?linkid=2023588.
+AppDelegate.obj : warning LNK4075: эх єўшЄ√трхЄё  "/EDITANDCONTINUE" шч-чр ёяхЎшЇшърЎшш "/SAFESEH"
+     ╤ючфрхЄё  сшсышюЄхър C:\Android\Cocos\cocos2d-x-3.17.2\NEW_PROJECTS_DIR\MyGame\proj.win32\Debug.win32\MyGame.lib ш юс·хъЄ C:\Android\Cocos\cocos2d-x-3.17.2\NEW_PROJECTS_DIR\MyGame\proj.win32\Debug.win32\MyGame.exp
+  MyGame.vcxproj -> C:\Android\Cocos\cocos2d-x-3.17.2\NEW_PROJECTS_DIR\MyGame\proj.win32\Debug.win32\MyGame.exe
+  Performing Custom Build Step
+  Скопировано файлов: 0.

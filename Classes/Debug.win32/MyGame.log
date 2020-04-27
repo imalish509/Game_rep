@@ -1,0 +1,28 @@
+﻿D:\MVS2019\MVS2017Prog\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141_xp\Toolset.targets(39,5): warning MSB8051: поддержка Windows XP прекращена, ее не будет в последующих выпусках Visual Studio. Дополнительные сведения: https://go.microsoft.com/fwlink/?linkid=2023588.
+  AppDelegate.cpp
+  HelloWorldScene.cpp
+  MyGameScene.cpp
+  Level.cpp
+  main.cpp
+  Player.cpp
+  ToucherListener.cpp
+c1xx : fatal error C1083: Не удается открыть файл источник: ToucherListener.cpp: No such file or directory,
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл ..\Classes\AppDelegate.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл ..\Classes\AppDelegate.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\appdelegate.cpp(71): warning C4305: аргумент: усечение из "double" в "float"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл ..\Classes\MyGameScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл ..\Classes\MyGameScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл Level.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл Level.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\mygamescene.cpp(307): warning C4996: 'cocos2d::Layer::setKeyboardEnabled': объявлен deprecate
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\2d\cclayer.h(208): note:  см. объявление "cocos2d::Layer::setKeyboardEnabled"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.cpp(47): warning C4996: 'cocos2d::TMXLayer::positionAt': объявлен deprecate
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\2d\cctmxlayer.h(169): note:  см. объявление "cocos2d::TMXLayer::positionAt"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.cpp(75): warning C4996: 'cocos2d::TMXLayer::positionAt': объявлен deprecate
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\2d\cctmxlayer.h(169): note:  см. объявление "cocos2d::TMXLayer::positionAt"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.cpp(102): warning C4996: 'cocos2d::TMXLayer::positionAt': объявлен deprecate
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\2d\cctmxlayer.h(169): note:  см. объявление "cocos2d::TMXLayer::positionAt"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\level.h(12): warning C4996: 'cocos2d::Object': объявлен deprecate (компилируется исходный файл ..\Classes\HelloWorldScene.cpp)
+  c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\cocos2d\cocos\deprecated\ccdeprecated.h(598): note:  см. объявление "cocos2d::Object" (компилируется исходный файл ..\Classes\HelloWorldScene.cpp)
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\helloworldscene.cpp(75): warning C4305: аргумент: усечение из "double" в "float"
+c:\android\cocos\cocos2d-x-3.17.2\new_projects_dir\mygame\classes\helloworldscene.cpp(81): warning C4305: аргумент: усечение из "double" в "float"
