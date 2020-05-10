@@ -34,23 +34,12 @@ public:
 
 	virtual bool init();
 
-	// a selector callback
 	void menuCloseCallback(cocos2d::Ref* pSender);
 
-	// implement the "static create()" method manually
 	CREATE_FUNC(HelloWorld);
 
-	void Play(Ref* pSender);
-	//void Highscores(Ref* pSender);
-	//void Settings(Ref* pSender);
 	void ImageButton(Ref* pSender);
 
-
-	//Toucher Listener
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
-	//Toucher Listener
 };
 
 #endif // __HELLOWORLD_SCENE_H__

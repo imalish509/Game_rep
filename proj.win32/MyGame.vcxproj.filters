@@ -7,63 +7,63 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{4a791f74-5e4f-4960-95e0-7117e021e2af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Level.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoseScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MyGameScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\EndScene.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="MyGameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorldScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="EndScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="LoseScene.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Level.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoseScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MyGameScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\EndScene.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGameScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorldScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="EndScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="LoseScene.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\Keyboard.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -149,23 +149,23 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="EndScene.cpp" />
-    <ClCompile Include="HelloWorldScene.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LoseScene.cpp" />
+    <ClCompile Include="..\Classes\EndScene.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Level.cpp" />
+    <ClCompile Include="..\Classes\LoseScene.cpp" />
+    <ClCompile Include="..\Classes\MyGameScene.cpp" />
+    <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyGameScene.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="EndScene.h" />
-    <ClInclude Include="HelloWorldScene.h" />
-    <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="LoseScene.h" />
-    <ClInclude Include="MyGameScene.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="..\Classes\EndScene.h" />
+    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Keyboard.h" />
+    <ClInclude Include="..\Classes\Level.h" />
+    <ClInclude Include="..\Classes\LoseScene.h" />
+    <ClInclude Include="..\Classes\MyGameScene.h" />
+    <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

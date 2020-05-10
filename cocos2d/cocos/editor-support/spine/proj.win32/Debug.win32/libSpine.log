@@ -1,2 +1,57 @@
 ﻿D:\MVS2019\MVS2017Prog\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141_xp\Toolset.targets(39,5): warning MSB8051: поддержка Windows XP прекращена, ее не будет в последующих выпусках Visual Studio. Дополнительные сведения: https://go.microsoft.com/fwlink/?linkid=2023588.
-  libSpine.vcxproj -> C:\Android\Cocos\cocos2d-x-3.17.2\NEW_PROJECTS_DIR\MyGame\proj.win32\Debug.win32\libSpine.lib
+  Animation.c
+  AnimationState.c
+  AnimationStateData.c
+  Array.c
+  Atlas.c
+  AtlasAttachmentLoader.c
+  Attachment.c
+  AttachmentLoader.c
+  Bone.c
+  BoneData.c
+  BoundingBoxAttachment.c
+  ClippingAttachment.c
+  Color.c
+  Event.c
+  EventData.c
+  extension.c
+  IkConstraint.c
+  IkConstraintData.c
+  Json.c
+  MeshAttachment.c
+  PathAttachment.c
+  PathConstraint.c
+  PathConstraintData.c
+  PointAttachment.c
+  RegionAttachment.c
+  Skeleton.c
+  SkeletonBinary.c
+  SkeletonBounds.c
+  SkeletonClipping.c
+  SkeletonData.c
+  SkeletonJson.c
+  Skin.c
+  Slot.c
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbinary.c(310): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBinary.c)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbinary.c(372): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBinary.c)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbinary.c(484): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBinary.c)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbinary.c(649): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBinary.c)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbinary.c(652): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBinary.c)
+  SlotData.c
+  TransformConstraint.c
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonjson.c(97): warning C4018: >=: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonJson.c)
+  TransformConstraintData.c
+  Triangulator.c
+  VertexAttachment.c
+  VertexEffect.c
+  AttachmentVertices.cpp
+  Cocos2dAttachmentLoader.cpp
+  SkeletonAnimation.cpp
+  SkeletonBatch.cpp
+  SkeletonRenderer.cpp
+  SkeletonTwoColorBatch.cpp
+  spine-cocos2dx.cpp
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletontwocolorbatch.cpp(237): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonTwoColorBatch.cpp)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletontwocolorbatch.cpp(274): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonTwoColorBatch.cpp)
+d:\работа heappgames\github\myrep1\mygame1\cocos2d\cocos\editor-support\spine\skeletonbatch.cpp(110): warning C4018: <: несоответствие типов со знаком и без знака (компилируется исходный файл ..\SkeletonBatch.cpp)
+  libSpine.vcxproj -> D:\Работа HeappGames\GitHub\Myrep1\MyGame1\proj.win32\Debug.win32\libSpine.lib
