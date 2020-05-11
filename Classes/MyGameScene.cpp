@@ -49,22 +49,14 @@ bool MyGameScene::init()
 
 	loadEnemies();
 
-	this->runAction(camera);
-
-	//auto vsize = Director::getInstance()->getVisibleSize();
+	this->runAction(camera);;
 
 	auto pos = cameraTarget->getPosition();
-	//auto pointLabel = Point(vsize.width / 2.4f + origin.x, vsize.height / 2.3f + origin.y);
 
 	m_scoreLabel = Label::createWithSystemFont("Score = ", "Arial", 20);
 	m_score = Label::createWithSystemFont("0", "Arial", 20);
 	m_labelLives = Label::createWithSystemFont("Lives = ", "Arial", 20);
 	m_label = Label::createWithSystemFont("0", "Arial", 20);
-
-	//m_scoreLabel->setPosition(Vec2(pos.x - pointLabel.x, pos.y + pointLabel.y - m_scoreLabel->getContentSize().height));
-	//m_score->setPosition(Vec2(m_scoreLabel->getPositionX() + m_scoreLabel->getContentSize().width / 1.6f, m_scoreLabel->getPositionY()));
-	//m_labelLives->setPosition(Vec2(pos.x - pointLabel.x, pos.y + pointLabel.y));
-	//m_label->setPosition(Vec2(m_labelLives->getPositionX() + m_labelLives->getContentSize().width / 1.6f, m_labelLives->getPositionY()));
 
 	m_label->setPosition(wsize);
 	m_labelLives->setPosition(wsize);
@@ -81,7 +73,6 @@ bool MyGameScene::init()
 
 void MyGameScene::loadEnemies()
 {
-
 	enemy1 = Sprite::create("94.png");
 	enemy1->setPosition(level->tileCoordinateToPosition(Point(33, 2)));
 	enemy1->setAnchorPoint(Point::ZERO);
@@ -131,27 +122,6 @@ void MyGameScene::loadEnemies()
 
 void MyGameScene::fireCreate(float delay)
 {
-	//fair = new Sprite();
-	//if (fair)
-	//{
-	//	firepos = level->positionToTileCoordinate(Vec2(fair->getPosition()));
-	//	if (firepos.x < 20.0f)
-	//	{
-	//		fair->retain();
-	//		delete fair;
-	//		//fair = nullptr;
-
-	//	}
-	//}
-
-	////fair = new Sprite();
-	//fair->create("fire.png");
-	//this->addChild(fair);
-	//	fair->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
-	//	fair->setAnchorPoint(Point::ZERO);
-	//fireList.push_back(fair);
-	//	fair->runAction(action);
-
 	if (fire)
 	{
 		firepos = level->positionToTileCoordinate(Vec2(fire->getPosition()));
@@ -180,24 +150,7 @@ void MyGameScene::fireCreate(float delay)
 
 }
 
-void MyGameScene::fireCheck()
-{
-
-	if (fire)
-	{
-		firepos = level->positionToTileCoordinate(Vec2(fire->getPosition()));
-		if (firepos.x < 20.0f)
-		{
-			fire->retain();
-			
-		
-		}
-	}
-}
-
 void MyGameScene::updatePlayer(float interval) {
-
-
 
 	if (std::find(heldKeys.begin(), heldKeys.end(), SPACEBAR) != heldKeys.end()) {
 
@@ -399,7 +352,6 @@ void MyGameScene::updatePlayer(float interval) {
 	player->updateState(interval);
 	player->velocity_x = 0;
 	labels();
-	fireCheck();
 	cameraTarget->setPositionX(player->getPositionX());
 }
 
@@ -423,14 +375,6 @@ void MyGameScene::playerUp(float time)
 
 void MyGameScene::labels()
 {
-	//if(m_label)
-	//	{
-	//	m_label->removeFromParentAndCleanup(true);
-	//	m_labelLives->removeFromParentAndCleanup(true);
-	//	m_score->removeFromParentAndCleanup(true);
-	//	m_scoreLabel->removeFromParentAndCleanup(true);
-	//	}
-
 	Point origin = Director::getInstance()->getVisibleOrigin();
 	Size wsize = Director::getInstance()->getVisibleSize();
 

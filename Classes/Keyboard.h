@@ -15,8 +15,8 @@ const float SCALE_FACTOR = 2.0f;
 const float ENEMY_SCALE_FACTOR = 1.4f;
 const float PLAYER_MAX_VELOCITY = 5.0f;
 const float PLAYER_JUMP_VELOCITY = 10.0f;
-const float DAMPING = 0.87f;
 const float SPEED = 25.0f;
+const float DAMPING = 0.87f;
 const float PLAYER_BONUS_VELOCITY = 10.0f;
 const float GRAVITY = 0.37f;
 

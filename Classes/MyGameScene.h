@@ -56,7 +56,6 @@ public:
 	static Scene* createScene();
 
 	void fireCreate(float delay);
-	void fireCheck();
 
 	virtual bool init();
 
