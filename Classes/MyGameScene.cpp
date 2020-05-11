@@ -19,10 +19,8 @@ Scene* MyGameScene::createScene()
 bool MyGameScene::init()
 {
 
-
 	level = new Level();
 	level->loadMap("level.tmx");
-	level->retain();
 
 	auto director = Director::getInstance();
 	level->getMap()->setScale(SCALE_FACTOR);
@@ -30,7 +28,7 @@ bool MyGameScene::init()
 	this->addChild(level->getMap());
 
 	player = Player::create();
-	player->retain();
+
 	this->addChild(player);
 
 	Point point = Point(10, 2);
@@ -44,21 +42,22 @@ bool MyGameScene::init()
 	cameraTarget = Sprite::create();
 	cameraTarget->setPositionX(player->getPositionX());
 	cameraTarget->setPositionY(wsize.height / 2 + origin.y);
-	cameraTarget->retain();
+
 	this->addChild(cameraTarget);
 	
 	this->schedule(schedule_selector(MyGameScene::updatePlayer));
+	this->schedule(schedule_selector(MyGameScene::fireCreate), 1);
 
 	camera = Follow::create(cameraTarget, Rect::ZERO);
-	camera->retain();
+
 	loadEnemies();
 
-	this->runAction(camera->clone());
+	this->runAction(camera);
 
-	auto vsize = Director::getInstance()->getVisibleSize();
+	//auto vsize = Director::getInstance()->getVisibleSize();
 
 	auto pos = cameraTarget->getPosition();
-	auto pointLabel = Point(vsize.width / 2.4f + origin.x, vsize.height / 2.3f + origin.y);
+	//auto pointLabel = Point(vsize.width / 2.4f + origin.x, vsize.height / 2.3f + origin.y);
 
 	m_scoreLabel = Label::createWithSystemFont("Score = ", "Arial", 20);
 	m_score = Label::createWithSystemFont("0", "Arial", 20);
@@ -80,8 +79,6 @@ bool MyGameScene::init()
 	this->addChild(m_label);
 	this->addChild(m_labelLives);
 
-	shoot();
-
 	return true;
 }
 
@@ -93,7 +90,6 @@ void MyGameScene::loadEnemies()
 	enemy1->setAnchorPoint(Point::ZERO);
 	enemy1->setScale(ENEMY_SCALE_FACTOR);
 	enemy1->setFlippedX(true);
-	enemy1->retain();
 
 	enemyList.push_back(enemy1);
 	this->addChild(enemy1);
@@ -103,7 +99,6 @@ void MyGameScene::loadEnemies()
 	enemy2->setAnchorPoint(Point::ZERO);
 	enemy2->setScale(ENEMY_SCALE_FACTOR);
 	enemy2->setFlippedX(true);
-	enemy2->retain();
 
 	enemyList.push_back(enemy2);
 	this->addChild(enemy2);
@@ -113,7 +108,6 @@ void MyGameScene::loadEnemies()
 	enemy3->setAnchorPoint(Point::ZERO);
 	enemy3->setScale(ENEMY_SCALE_FACTOR);
 	enemy3->setFlippedX(true);
-	enemy3->retain();
 
 	enemyList.push_back(enemy3);
 	this->addChild(enemy3);
@@ -123,7 +117,6 @@ void MyGameScene::loadEnemies()
 	enemy4->setAnchorPoint(Point::ZERO);
 	enemy4->setScale(ENEMY_SCALE_FACTOR);
 	enemy4->setFlippedX(true);
-	enemy4->retain();
 
 	enemyList.push_back(enemy4);
 	this->addChild(enemy4);
@@ -133,24 +126,76 @@ void MyGameScene::loadEnemies()
 	enemy5->setAnchorPoint(Point::ZERO);
 	enemy5->setScale(ENEMY_SCALE_FACTOR);
 	enemy5->setFlippedX(true);
-	enemy5->retain();
 
 	enemyList.push_back(enemy5);
 	this->addChild(enemy5);
+
 }
 
-void MyGameScene::shoot()
+void MyGameScene::fireCreate(float delay)
 {
+	//fair = new Sprite();
+	//if (fair)
+	//{
+	//	firepos = level->positionToTileCoordinate(Vec2(fair->getPosition()));
+	//	if (firepos.x < 20.0f)
+	//	{
+	//		fair->retain();
+	//		delete fair;
+	//		//fair = nullptr;
+
+	//	}
+	//}
+
+	////fair = new Sprite();
+	//fair->create("fire.png");
+	//this->addChild(fair);
+	//	fair->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
+	//	fair->setAnchorPoint(Point::ZERO);
+	//fireList.push_back(fair);
+	//	fair->runAction(action);
+
+	if (fire)
+	{
+		firepos = level->positionToTileCoordinate(Vec2(fire->getPosition()));
+		if (firepos.x < 20.0f)
+		{
+			fire->retain();
+			fire->removeFromParent();
+		}
+	}
+
+	auto placeb = level->positionToTileCoordinate(Vec2(level->tileCoordinateToPosition(Vec2(10, 2.5f))));
+	auto enemypos = level->positionToTileCoordinate(Vec2(enemy1->getPositionX(), 2.5f));
+
 	auto contsize = enemy1->getContentSize() / 2;
-	auto sprite = Sprite::create("fire.png");
-	sprite->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
-	sprite->setAnchorPoint(Point::ZERO);
-	auto action = MoveTo::create(4, level->tileCoordinateToPosition(Vec2(10, 2.5f)));
-	auto placeb = place->create(Vec2(level->tileCoordinateToPosition(Vec2(10, 2))));
-	auto target = TargetedAction::create(sprite, placeb);
-	auto bot = Speed::create(target, 1.4f);
-	sprite->runAction(action);
-	this->addChild(sprite);
+
+	auto action = MoveTo::create(enemypos.x / SPEED, level->tileCoordinateToPosition(Vec2(10, 2.6f)));
+
+	fire = Sprite::create("fire.png");
+	fire->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
+	fire->setAnchorPoint(Point::ZERO);
+	fire->runAction(action);
+
+	fireList.push_back(fire);
+
+	this->addChild(fire);
+
+}
+
+void MyGameScene::fireCheck()
+{
+
+	if (fire)
+	{
+		firepos = level->positionToTileCoordinate(Vec2(fire->getPosition()));
+		if (firepos.x < 20.0f)
+		{
+			fire->retain();
+			
+		
+		}
+	}
 }
 
 void MyGameScene::updatePlayer(float interval) {
@@ -294,9 +339,24 @@ void MyGameScene::updatePlayer(float interval) {
 		score = player->getPositionX();
 	}
 
+	for (Sprite* tile : fireList)
+	{
+		if (fire)
+		{
+			if (tile->getBoundingBox().intersectsRect(player_rect))
+			{
+				Point p = level->tileCoordinateToPosition(Point(10, 2));
+				player->setPosition(p);
+				lives--;
+				score = 0;
+			}
+		}
+	}
+
 	player->updateState(interval);
 	player->velocity_x = 0;
 	labels();
+	fireCheck();
 	cameraTarget->setPositionX(player->getPositionX());
 }
 
@@ -374,7 +434,7 @@ MyGameScene::MyGameScene(void)
 {
 	setKeyboardEnabled(true);
 	collidesX = false;
-	lives = 3.0f;
+	lives = 20.0f;
 	score = 0;
 }
 MyGameScene::~MyGameScene(void)

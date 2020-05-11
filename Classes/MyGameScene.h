@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Keyboard.h"
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -28,6 +29,7 @@ public:
 	Animate *falling;
 
 	vector<Sprite*> enemyList;
+	vector<Sprite*> fireList;
 
 	bool collidesX;
 
@@ -50,7 +52,8 @@ public:
 
 	static Scene* createScene();
 
-	void shoot();
+	void fireCreate(float delay);
+	void fireCheck();
 
 	virtual bool init();
 
@@ -63,17 +66,10 @@ public:
 
 private:
 
+	Point firepos;
+	Sprite* fair = nullptr;
 	Sprite *enemy1;
-	AccelDeccelAmplitude* amp;
-	AccelAmplitude* cam;
-	Spawn * spawn;
-	BezierBy bez;
-	ActionEase* act;
-	FiniteTimeAction* fineact;
-	Place *place;
-	TargetedAction* join;
-	Speed *speed;
-	Sprite *fire;
+	Sprite *fire = nullptr;
 	int score;
 	int lives;
 	Label *m_label = nullptr;
