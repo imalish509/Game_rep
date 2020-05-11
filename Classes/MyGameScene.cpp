@@ -70,10 +70,10 @@ bool MyGameScene::init()
 	//m_labelLives->setPosition(Vec2(pos.x - pointLabel.x, pos.y + pointLabel.y));
 	//m_label->setPosition(Vec2(m_labelLives->getPositionX() + m_labelLives->getContentSize().width / 1.6f, m_labelLives->getPositionY()));
 
-	m_label->setPosition(level->tileCoordinateToPosition(point));
-	m_labelLives->setPosition(level->tileCoordinateToPosition(point));
-	m_score->setPosition(level->tileCoordinateToPosition(point));
-	m_scoreLabel->setPosition(level->tileCoordinateToPosition(point));
+	m_label->setPosition(wsize);
+	m_labelLives->setPosition(wsize);
+	m_score->setPosition(wsize);
+	m_scoreLabel->setPosition(wsize);
 
 	this->addChild(m_score);
 	this->addChild(m_scoreLabel);
@@ -310,15 +310,19 @@ void MyGameScene::labels()
 	//	m_scoreLabel->removeFromParentAndCleanup(true);
 	//	}
 
-	Point point = player->getPosition();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+	Size wsize = Director::getInstance()->getVisibleSize();
+
+	auto posx = player->getPositionX();
+	auto posy = wsize.height / 1.1f;
 
 	m_label->setString(to_string(lives));
 	m_score->setString(to_string(score));
 
-	m_label->setPosition(point);
-	m_labelLives->setPosition(point);
-	m_score->setPosition(point);
-	m_scoreLabel->setPosition(point);
+	m_label->setPosition(posx - wsize.width / 2.4f + m_labelLives->getContentSize().width, posy);
+	m_labelLives->setPosition(posx - wsize.width / 2.4f, posy);
+	m_score->setPosition(posx - wsize.width / 2.4f + m_scoreLabel->getContentSize().width, posy - m_label->getContentSize().height);
+	m_scoreLabel->setPosition(posx - wsize.width / 2.4f, posy - m_label->getContentSize().height);
 
 	errorUp();
 
