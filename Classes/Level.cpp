@@ -129,6 +129,57 @@ vector<Rect> Level::getCollisionTilesX(Point point, int direction) {
 	return list;
 }
 
+vector<Rect> Level::getBonusX(Point point, int direction)
+{
+	vector<Rect> list;
+
+	TMXLayer *bonus = map->getLayer("bonus");
+
+	int mapheight = (int)map->getMapSize().height - 1;
+
+	for (int b = -1; b < 2; b++) {
+
+		Sprite *tile = bonus->getTileAt(Point((int)point.x + direction, mapheight - ((int)point.y + b)));
+		if (tile != NULL) {
+
+			Rect tileRect = Rect();
+
+			Point tmp = bonus->positionAt(Point((int)point.x + direction, mapheight - ((int)point.y + b)));
+			tileRect.setRect(tmp.x * SCALE_FACTOR, tmp.y * SCALE_FACTOR, map->getTileSize().width * SCALE_FACTOR, map->getTileSize().height * SCALE_FACTOR);
+
+			list.push_back(tileRect);
+		}
+	}
+	return list;
+}
+
+
+vector<Rect> Level::getBonusY(Point point, int direction)
+{
+	vector<Rect> list;
+
+	TMXLayer *bonus = map->getLayer("bonus");
+
+	int mapheight = (int)map->getMapSize().height - 1;
+
+	for (int b = -1; b < 2; b++) {
+
+		Sprite *tile = bonus->getTileAt(Point((int)point.x + b, mapheight - ((int)point.y + direction)));
+
+		if (tile != NULL) {
+
+			Rect tileRect = Rect();
+
+			Point tmp = bonus->positionAt(Point((int)point.x + b, mapheight - ((int)point.y + direction)));
+			tileRect.setRect(tmp.x * SCALE_FACTOR, tmp.y * SCALE_FACTOR, map->getTileSize().width * SCALE_FACTOR, map->getTileSize().height * SCALE_FACTOR);
+
+			list.push_back(tileRect);
+		}
+	}
+
+	return list;
+}
+
 Level::Level(void)
 {
 }

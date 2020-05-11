@@ -2,6 +2,10 @@
 #define __MYGAMESCENE_H__
 #include "cocos2d.h"
 #include "Level.h"
+#include "LoseScene.h"
+#include "MyGameScene.h"
+#include "HelloWorldScene.h"
+#include "EndScene.h"
 #include "Player.h"
 #include "Keyboard.h"
 #include <algorithm>
@@ -35,7 +39,6 @@ public:
 
 	float stutteringFix;
 
-
 	Follow *camera;
 
 	vector<EventKeyboard::KeyCode> heldKeys;
@@ -47,7 +50,7 @@ public:
 	void loadEnemies();
 
 	void errorUp();
-
+	void playerUp(float time);
 	void labels();
 
 	static Scene* createScene();
@@ -67,7 +70,6 @@ public:
 private:
 
 	Point firepos;
-	Sprite* fair = nullptr;
 	Sprite *enemy1;
 	Sprite *fire = nullptr;
 	int score;

@@ -17,11 +17,14 @@ public:
 	TMXTiledMap *getMap();
 	vector<Rect> getHazardsX(Point point, int direction);
 	vector<Rect> getHazardsY(Point point, int direction);
+	vector<Rect> getBonusX(Point point, int direction);
+	vector<Rect> getBonusY(Point point, int direction);
 	
 	Point tileCoordinateToPosition(Point point);
 	Point positionToTileCoordinate(Point point);
 	vector<Rect> getCollisionTilesY(Point point, int direction);
 	vector<Rect> getCollisionTilesX(Point point, int direction);
+
 	Level(void);
 	virtual ~Level(void);
 };

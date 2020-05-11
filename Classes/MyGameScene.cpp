@@ -1,7 +1,4 @@
-#include "LoseScene.h"
 #include "MyGameScene.h"
-#include "HelloWorldScene.h"
-#include "EndScene.h"
 #include <iostream>
 #include <stdio.h>
 
@@ -201,6 +198,7 @@ void MyGameScene::fireCheck()
 void MyGameScene::updatePlayer(float interval) {
 
 
+
 	if (std::find(heldKeys.begin(), heldKeys.end(), SPACEBAR) != heldKeys.end()) {
 
 		if (player->grounded && player->velocity_y <= 0) {
@@ -231,7 +229,9 @@ void MyGameScene::updatePlayer(float interval) {
 	Point tmp;
     vector<Rect> tiles;
 	vector<Rect> hazards;
+	vector<Rect> tilebonus;
 	tiles.clear();
+	tilebonus.clear();
 
 	tmp = level->positionToTileCoordinate(Point(player->getPositionX() + player->player_size.width * 0.5f,
 		player->getPositionY() + player->player_size.height * 0.5f));
@@ -242,6 +242,13 @@ void MyGameScene::updatePlayer(float interval) {
 	else {
 		tiles = level->getCollisionTilesX(tmp, -1);
 	}
+	if (player->velocity_x > 0) {
+		tilebonus = level->getBonusX(tmp, 1);
+	}
+	else {
+		tilebonus = level->getBonusX(tmp, -1);
+	}
+
 	player_rect.setRect(
 		player->getBoundingBox().getMinX() + player->velocity_x,
 		player->getBoundingBox().getMinY() + 1.0f,
@@ -255,14 +262,27 @@ void MyGameScene::updatePlayer(float interval) {
 			break;
 		}
 	}
+	for (Rect tile : tilebonus) {
+		if (player_rect.intersectsRect(tile)) {
+			player->velocity_x = 0;
+			break;
+		}
+	}
 
 	tiles.clear();
+	tilebonus.clear();
 
 	if (player->velocity_y > 0) {
 		tiles = level->getCollisionTilesY(tmp, 1);
 	}
 	else if (player->velocity_y < 0) {
 		tiles = level->getCollisionTilesY(tmp, -1);
+	}
+	if (player->velocity_y > 0) {
+		tilebonus = level->getBonusY(tmp, 1);
+	}
+	else if (player->velocity_y < 0) {
+		tilebonus = level->getBonusY(tmp, -1);
 	}
 
 	player_rect.setRect(
@@ -279,6 +299,29 @@ void MyGameScene::updatePlayer(float interval) {
 
 				player->setPositionY(player->getPositionY() - player->velocity_y);
 
+			}
+			else {
+
+				player->setPositionY(tile.getMaxY());
+				player->grounded = true;
+				player->jumping = false;
+
+			}
+			player->velocity_y = 0;
+			break;
+
+		}
+		player->grounded = false;
+	}
+
+	for (Rect tile : tilebonus) {
+
+		if (tile.intersectsRect(player_rect)) {
+			if (player->velocity_y > 0) {
+
+				player->setPositionY(player->getPositionY() - player->velocity_y);
+				this->schedule(schedule_selector(MyGameScene::playerUp));
+				lives--;
 			}
 			else {
 
@@ -358,6 +401,24 @@ void MyGameScene::updatePlayer(float interval) {
 	labels();
 	fireCheck();
 	cameraTarget->setPositionX(player->getPositionX());
+}
+
+void MyGameScene::playerUp(float time)
+{
+	player->setColor(Color3B::RED);
+	if (std::find(heldKeys.begin(), heldKeys.end(), RIGHT_ARROW) != heldKeys.end()) {
+
+		player->velocity_x = PLAYER_MAX_VELOCITY;
+
+		player->facing_right = true;
+	}
+
+	if (std::find(heldKeys.begin(), heldKeys.end(), LEFT_ARROW) != heldKeys.end()) {
+
+		player->velocity_x = -PLAYER_MAX_VELOCITY;
+		player->facing_right = false;
+	}
+	player->updateState(time);
 }
 
 void MyGameScene::labels()
