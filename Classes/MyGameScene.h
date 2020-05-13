@@ -9,7 +9,6 @@
 #include "Player.h"
 #include "Keyboard.h"
 #include <algorithm>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -28,16 +27,8 @@ public:
 	Sprite *player_sprite;
 	Sprite *cameraTarget;
 
-	Animate *walkRight;
-	Animate *jumping;
-	Animate *falling;
-
 	vector<Sprite*> enemyList;
 	vector<Sprite*> fireList;
-
-	bool collidesX;
-
-	float stutteringFix;
 
 	Follow *camera;
 
@@ -46,15 +37,15 @@ public:
 	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 
 	void updatePlayer(float interval);
+	void bonusUpdatePlayer(float interval);
 
 	void loadEnemies();
 
 	void errorUp();
 	void playerUp(float time);
 	void labels();
-
 	static Scene* createScene();
-
+	TransitionScene trans;
 	void fireCreate(float delay);
 
 	virtual bool init();

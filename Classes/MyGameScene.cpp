@@ -1,6 +1,4 @@
 #include "MyGameScene.h"
-#include <iostream>
-#include <stdio.h>
 
 Scene* MyGameScene::createScene()
 {
@@ -25,9 +23,8 @@ bool MyGameScene::init()
 	this->addChild(level->getMap());
 
 	player = Player::create();
-
 	this->addChild(player);
-
+	
 	Point point = Point(10, 2);
 	player->setPosition(level->tileCoordinateToPosition(point));
 
@@ -43,25 +40,19 @@ bool MyGameScene::init()
 	this->addChild(cameraTarget);
 	
 	this->schedule(schedule_selector(MyGameScene::updatePlayer));
-	this->schedule(schedule_selector(MyGameScene::fireCreate), 1);
-
+	
 	camera = Follow::create(cameraTarget, Rect::ZERO);
 
 	loadEnemies();
 
-	this->runAction(camera);;
-
+	this->runAction(camera);
+	
 	auto pos = cameraTarget->getPosition();
 
 	m_scoreLabel = Label::createWithSystemFont("Score = ", "Arial", 20);
 	m_score = Label::createWithSystemFont("0", "Arial", 20);
 	m_labelLives = Label::createWithSystemFont("Lives = ", "Arial", 20);
 	m_label = Label::createWithSystemFont("0", "Arial", 20);
-
-	m_label->setPosition(wsize);
-	m_labelLives->setPosition(wsize);
-	m_score->setPosition(wsize);
-	m_scoreLabel->setPosition(wsize);
 
 	this->addChild(m_score);
 	this->addChild(m_scoreLabel);
@@ -117,6 +108,7 @@ void MyGameScene::loadEnemies()
 
 	enemyList.push_back(enemy5);
 	this->addChild(enemy5);
+	this->schedule(schedule_selector(MyGameScene::fireCreate), 1);
 
 }
 
@@ -274,7 +266,9 @@ void MyGameScene::updatePlayer(float interval) {
 
 				player->setPositionY(player->getPositionY() - player->velocity_y);
 				this->schedule(schedule_selector(MyGameScene::playerUp));
+				this->unschedule(schedule_selector(MyGameScene::updatePlayer));
 				lives--;
+				
 			}
 			else {
 
@@ -358,19 +352,193 @@ void MyGameScene::updatePlayer(float interval) {
 void MyGameScene::playerUp(float time)
 {
 	player->setColor(Color3B::RED);
+
 	if (std::find(heldKeys.begin(), heldKeys.end(), RIGHT_ARROW) != heldKeys.end()) {
 
-		player->velocity_x = PLAYER_MAX_VELOCITY;
+		player->velocity_x = PLAYER_BONUS_VELOCITY;
 
 		player->facing_right = true;
 	}
 
 	if (std::find(heldKeys.begin(), heldKeys.end(), LEFT_ARROW) != heldKeys.end()) {
 
-		player->velocity_x = -PLAYER_MAX_VELOCITY;
+		player->velocity_x = -PLAYER_BONUS_VELOCITY;
 		player->facing_right = false;
 	}
-	player->updateState(time);
+
+	this->bonusUpdatePlayer(time);
+
+}
+
+void MyGameScene::bonusUpdatePlayer(float interval) {
+
+	if (std::find(heldKeys.begin(), heldKeys.end(), SPACEBAR) != heldKeys.end()) {
+
+		if (player->grounded && player->velocity_y <= 0) {
+
+			player->velocity_y = PLAYER_JUMP_VELOCITY + 2.0f;
+			player->jumping = true;
+			player->grounded = false;
+		}
+	}
+
+	if (std::find(heldKeys.begin(), heldKeys.end(), RIGHT_ARROW) != heldKeys.end()) {
+
+		player->velocity_x = PLAYER_MAX_VELOCITY + 5.0f;
+
+		player->facing_right = true;
+	}
+
+	if (std::find(heldKeys.begin(), heldKeys.end(), LEFT_ARROW) != heldKeys.end()) {
+
+		player->velocity_x = -PLAYER_MAX_VELOCITY - 5.0f;
+		player->facing_right = false;
+	}
+
+	player->velocity_y -= GRAVITY;
+
+	Rect player_rect = player->getBoundingBox();
+
+	Point tmp;
+	vector<Rect> tiles;
+	vector<Rect> hazards;
+	vector<Rect> tilebonus;
+	tiles.clear();
+	tilebonus.clear();
+
+	tmp = level->positionToTileCoordinate(Point(player->getPositionX() + player->player_size.width * 0.5f,
+		player->getPositionY() + player->player_size.height * 0.5f));
+
+	if (player->velocity_x > 0) {
+		tiles = level->getCollisionTilesX(tmp, 1);
+	}
+	else {
+		tiles = level->getCollisionTilesX(tmp, -1);
+	}
+	if (player->velocity_x > 0) {
+		tilebonus = level->getBonusX(tmp, 1);
+	}
+	else {
+		tilebonus = level->getBonusX(tmp, -1);
+	}
+
+	player_rect.setRect(
+		player->getBoundingBox().getMinX() + player->velocity_x,
+		player->getBoundingBox().getMinY() + 1.0f,
+		player->player_size.width,
+		player->player_size.height
+	);
+
+	for (Rect tile : tiles) {
+		if (player_rect.intersectsRect(tile)) {
+			player->velocity_x = 0;
+			break;
+		}
+	}
+	for (Rect tile : tilebonus) {
+		if (player_rect.intersectsRect(tile)) {
+			player->velocity_x = 0;
+			break;
+		}
+	}
+
+	tiles.clear();
+	tilebonus.clear();
+
+	if (player->velocity_y > 0) {
+		tiles = level->getCollisionTilesY(tmp, 1);
+	}
+	else if (player->velocity_y < 0) {
+		tiles = level->getCollisionTilesY(tmp, -1);
+	}
+	if (player->velocity_y > 0) {
+		tilebonus = level->getBonusY(tmp, 1);
+	}
+	else if (player->velocity_y < 0) {
+		tilebonus = level->getBonusY(tmp, -1);
+	}
+
+	player_rect.setRect(
+		player->getBoundingBox().getMinX(),
+		player->getBoundingBox().getMinY(),
+		player->player_size.width,
+		player->player_size.height
+	);
+
+	for (Rect tile : tiles) {
+
+		if (tile.intersectsRect(player_rect)) {
+			if (player->velocity_y > 0) {
+
+				player->setPositionY(player->getPositionY() - player->velocity_y);
+
+			}
+			else {
+
+				player->setPositionY(tile.getMaxY());
+				player->grounded = true;
+				player->jumping = false;
+
+			}
+			player->velocity_y = 0;
+			break;
+
+		}
+		player->grounded = false;
+	}
+
+	for (Rect tile : tilebonus) {
+
+		if (tile.intersectsRect(player_rect)) {
+			if (player->velocity_y > 0) {
+
+				player->setPositionY(player->getPositionY() - player->velocity_y);
+
+			}
+			else {
+
+				player->setPositionY(tile.getMaxY());
+				player->grounded = true;
+				player->jumping = false;
+
+			}
+			player->velocity_y = 0;
+			break;
+
+		}
+		player->grounded = false;
+	}
+
+	if (player->velocity_x > 0) {
+		hazards = level->getHazardsX(tmp, 1);
+	}
+	else {
+		hazards = level->getHazardsX(tmp, -1);
+	}
+
+	if (player->velocity_y > 0) {
+		hazards = level->getHazardsY(tmp, 1);
+	}
+	else if (player->velocity_y < 0) {
+		hazards = level->getHazardsY(tmp, -1);
+	}
+
+	player_rect.setRect(
+		player->getBoundingBox().getMinX() + player->velocity_x,
+		player->getBoundingBox().getMinY() + 1.0f,
+		player->player_size.width,
+		player->player_size.height
+	);
+
+	if (player->velocity_x > 0 || player->velocity_x < 0)
+	{
+		score = player->getPositionX();
+	}
+
+	player->updateState(interval);
+	player->velocity_x = 0;
+	labels();
+	cameraTarget->setPositionX(player->getPositionX());
 }
 
 void MyGameScene::labels()
@@ -418,7 +586,6 @@ void MyGameScene::errorUp()
 
 void MyGameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-
 	if (std::find(heldKeys.begin(), heldKeys.end(), keyCode) == heldKeys.end()) {
 		heldKeys.push_back(keyCode);
 	}
@@ -438,7 +605,6 @@ void MyGameScene::menuCloseCallback(Ref* pSender)
 MyGameScene::MyGameScene(void)
 {
 	setKeyboardEnabled(true);
-	collidesX = false;
 	lives = 20.0f;
 	score = 0;
 }
