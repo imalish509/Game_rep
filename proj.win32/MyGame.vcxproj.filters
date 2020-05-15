@@ -10,6 +10,12 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{4a791f74-5e4f-4960-95e0-7117e021e2af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\game_object">
+      <UniqueIdentifier>{f3d62562-ad28-4cba-9137-d466b7fbf83c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\game_object\bullets">
+      <UniqueIdentifier>{06376807-1610-43a7-8031-82d99cdb6db4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game_objects\bullets\BaseBullet.cpp">
+      <Filter>Classes\game_object\bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Keyboard.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game_objects\bullets\BaseBullet.h">
+      <Filter>Classes\game_object\bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

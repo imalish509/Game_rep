@@ -8,7 +8,6 @@
 #include "EndScene.h"
 #include "Player.h"
 #include "Keyboard.h"
-#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -26,7 +25,7 @@ public:
 
 	Sprite *player_sprite;
 	Sprite *cameraTarget;
-
+	
 	vector<Sprite*> enemyList;
 	vector<Sprite*> fireList;
 
@@ -61,7 +60,7 @@ private:
 
 	Point firepos;
 	Sprite *enemy1;
-	Sprite *fire = nullptr;
+	Sprite *m_fire = nullptr;
 	int score;
 	int lives;
 	Label *m_label = nullptr;

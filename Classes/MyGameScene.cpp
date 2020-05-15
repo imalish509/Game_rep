@@ -96,7 +96,7 @@ void MyGameScene::loadEnemies()
 	enemy4->setAnchorPoint(Point::ZERO);
 	enemy4->setScale(ENEMY_SCALE_FACTOR);
 	enemy4->setFlippedX(true);
-
+	
 	enemyList.push_back(enemy4);
 	this->addChild(enemy4);
 
@@ -114,13 +114,17 @@ void MyGameScene::loadEnemies()
 
 void MyGameScene::fireCreate(float delay)
 {
-	if (fire)
+	if (m_fire)
 	{
-		firepos = level->positionToTileCoordinate(Vec2(fire->getPosition()));
+		firepos = level->positionToTileCoordinate(Vec2(m_fire->getPosition()));
 		if (firepos.x < 20.0f)
 		{
-			fire->retain();
-			fire->removeFromParent();
+			//m_fire->retain();
+			m_fire->removeFromParent();
+			vector<Sprite*> ::iterator fireErase;
+			fireErase = fireList.begin();
+			fireList.erase(fireErase);
+
 		}
 	}
 
@@ -128,17 +132,15 @@ void MyGameScene::fireCreate(float delay)
 	auto enemypos = level->positionToTileCoordinate(Vec2(enemy1->getPositionX(), 2.5f));
 
 	auto contsize = enemy1->getContentSize() / 2;
-
 	auto action = MoveTo::create(enemypos.x / SPEED, level->tileCoordinateToPosition(Vec2(10, 2.6f)));
 
-	fire = Sprite::create("fire.png");
-	fire->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
-	fire->setAnchorPoint(Point::ZERO);
-	fire->runAction(action);
+	m_fire = Sprite::create("fire.png");
+	m_fire->setPosition(enemy1->getPositionX(), enemy1->getPositionY() + contsize.height);
+	m_fire->setAnchorPoint(Point::ZERO);
+	m_fire->runAction(action);
 
-	fireList.push_back(fire);
-
-	this->addChild(fire);
+	fireList.push_back(m_fire);
+	this->addChild(m_fire);
 
 }
 
@@ -250,7 +252,7 @@ void MyGameScene::updatePlayer(float interval) {
 				player->setPositionY(tile.getMaxY());
 				player->grounded = true;
 				player->jumping = false;
-
+				
 			}
 			player->velocity_y = 0;
 			break;
@@ -266,6 +268,8 @@ void MyGameScene::updatePlayer(float interval) {
 
 				player->setPositionY(player->getPositionY() - player->velocity_y);
 				this->schedule(schedule_selector(MyGameScene::playerUp));
+				//this->scheduleOnce(schedule_selector(MyGameScene::playerUp), NULL);
+				//bonusUpdatePlayer(interval);
 				this->unschedule(schedule_selector(MyGameScene::updatePlayer));
 				lives--;
 				
@@ -329,11 +333,11 @@ void MyGameScene::updatePlayer(float interval) {
 		score = player->getPositionX();
 	}
 
-	for (Sprite* tile : fireList)
+	for (Sprite* fire : fireList)
 	{
 		if (fire)
 		{
-			if (tile->getBoundingBox().intersectsRect(player_rect))
+			if (fire->getBoundingBox().intersectsRect(player_rect))
 			{
 				Point p = level->tileCoordinateToPosition(Point(10, 2));
 				player->setPosition(p);
@@ -367,7 +371,8 @@ void MyGameScene::playerUp(float time)
 	}
 
 	this->bonusUpdatePlayer(time);
-
+	//this->schedule(schedule_selector(MyGameScene::updatePlayer), 5.0f);
+	//this->schedule(schedule_selector(MyGameScene::updatePlayer));
 }
 
 void MyGameScene::bonusUpdatePlayer(float interval) {
@@ -539,6 +544,7 @@ void MyGameScene::bonusUpdatePlayer(float interval) {
 	player->velocity_x = 0;
 	labels();
 	cameraTarget->setPositionX(player->getPositionX());
+	//this->schedule(schedule_selector(MyGameScene::playerUp), 5.0f);
 }
 
 void MyGameScene::labels()
